@@ -1,2 +1,2 @@
-# ellie-needs-to-pee
-WIP - Ellie Needs to Pee, a short pachinko RPG.
+# Ellie Needs to Pee
+WIP - A short pachinko RPG made with the Unity game engine.
