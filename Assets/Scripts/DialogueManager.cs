@@ -44,4 +44,10 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue(){
         anim.SetBool("IsOpen", false);
     }
+
+    public IEnumerator DelayedDialogue(){
+        DisplayNextSentence();
+        yield return new WaitForSeconds(3);
+        EndDialogue();
+    }
 }

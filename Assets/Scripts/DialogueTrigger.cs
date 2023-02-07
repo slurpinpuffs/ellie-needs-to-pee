@@ -9,6 +9,9 @@ public class DialogueTrigger : MonoBehaviour
     public UITimer timer;
     [SerializeField] GameObject dialogueBox;
     [SerializeField] DialogueManager dm;
+    //DialogueBox animator
+    [SerializeField] Animator animator;
+    [SerializeField] int waitTime = 3;
 
     void Awake(){
         timer = GetComponent<UITimer>();
@@ -22,19 +25,25 @@ public class DialogueTrigger : MonoBehaviour
     public IEnumerator DialogueEvents(){
         yield return new WaitUntil(() => timer.timeElapsed > 5f);
         StartCoroutine(TriggerDialogue());
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(waitTime);
         StartCoroutine(NextDialogue());
     }
 
     public IEnumerator TriggerDialogue(){
+        if(animator.GetBool("IsOpen") == true){
+            yield return new WaitUntil(() => animator.GetBool("IsOpen") == false);
+        }
         dm.StartDialogue(dialogue);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(waitTime);
         dm.EndDialogue();
     }
 
     public IEnumerator NextDialogue(){
+        if(animator.GetBool("IsOpen") == true){
+            yield return new WaitUntil(() => animator.GetBool("IsOpen") == false);
+        }
         dm.DisplayNextSentence();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(waitTime);
         dm.EndDialogue();
     }
 }
