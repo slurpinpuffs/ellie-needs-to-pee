@@ -17,15 +17,23 @@ public class DialogueTrigger : MonoBehaviour
         timer = GetComponent<UITimer>();
     }
 
-    void Start(){
-        dm.EndDialogue();
+    public virtual void Start(){
         StartCoroutine(DialogueEvents());
     }
 
     public IEnumerator DialogueEvents(){
-        yield return new WaitUntil(() => timer.timeElapsed > 5f);
+        yield return new WaitUntil(() => timer.timeElapsed > 3.5f);
         StartCoroutine(TriggerDialogue());
-        yield return new WaitForSeconds(waitTime);
+        StartCoroutine(NextDialogue());
+        StartCoroutine(NextHalfDialogue());
+        StartCoroutine(NextDialogue());
+        StartCoroutine(NextHalfDialogue());
+        StartCoroutine(NextHalfDialogue());
+        StartCoroutine(NextHalfDialogue());
+        StartCoroutine(NextDialogue());
+        StartCoroutine(NextDialogue());
+        StartCoroutine(NextHalfDialogue());
+        StartCoroutine(NextDialogue());
         StartCoroutine(NextDialogue());
     }
 
@@ -44,6 +52,15 @@ public class DialogueTrigger : MonoBehaviour
         }
         dm.DisplayNextSentence();
         yield return new WaitForSeconds(waitTime);
+        dm.EndDialogue();
+    }
+
+    public IEnumerator NextHalfDialogue(){
+        if(animator.GetBool("IsOpen") == true){
+            yield return new WaitUntil(() => animator.GetBool("IsOpen") == false);
+        }
+        dm.DisplayNextSentence();
+        yield return new WaitForSeconds(waitTime/2);
         dm.EndDialogue();
     }
 }

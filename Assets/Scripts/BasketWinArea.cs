@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BasketWinArea : InteractBox
 {
-    private bool gotItem = false;
-    [SerializeField] private SceneManager sm;
-    [SerializeField] private GameObject shelf;
-    [SerializeField] private PlayerMovement playerController;
-    [SerializeField] private ShelfObjectiveObject shelfObjective;
+    protected bool gotItem = false;
+    [SerializeField] protected SceneManager sm;
+    [SerializeField] protected GameObject shelf;
+    [SerializeField] protected PlayerMovement playerController;
+    [SerializeField] protected ShelfObjectiveObject shelfObjective;
 
     protected override void OnCollision(GameObject collidedObject){
         if(collidedObject.tag == "Item" && gotItem == false){
@@ -17,8 +17,8 @@ public class BasketWinArea : InteractBox
         }
     }
 
-    private IEnumerator getItem(){
-        yield return new WaitForSeconds(2);
+    protected virtual IEnumerator getItem(){
+        yield return new WaitForSeconds(1);
         playerController.enabled = true;
         StartCoroutine(shelfObjective.EndingDialogue());
         sm.Deactivate(shelf);

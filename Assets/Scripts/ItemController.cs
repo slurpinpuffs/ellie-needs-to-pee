@@ -25,7 +25,7 @@ public class ItemController : PlayerMovement
         float moveX = Input.GetAxisRaw("Horizontal");
         moveDirection = new Vector2(moveX, 0f).normalized;
         if(Input.GetAxisRaw("Release") > 0.1){
-            rb.gravityScale = 0.7f;
+            rb.gravityScale = 1.0f;
             controller.enabled = false;
         }
     }

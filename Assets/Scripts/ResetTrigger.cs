@@ -23,7 +23,7 @@ public class ResetTrigger : InteractBox
             isTriggered = true;
 
             //Wait 1 sec
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
 
             //Resets object's position, gravity, rotation, and restarts the player controller
             controller.resetPosition();

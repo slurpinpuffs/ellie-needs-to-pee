@@ -4,17 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
+public class FirstDialogueManager : MonoBehaviour
 {
+    [SerializeField] Dialogue firstDialogue;
+    [SerializeField] Animator anim;
+    [SerializeField] int waitTime = 3;
     private Queue<string> sentences;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text dialogueText;
-    [SerializeField] Animator anim;
 
-    // Start is called before the first frame update
     public virtual void Start()
     {
         sentences = new Queue<string>();
+        StartCoroutine(StartFirstDialogue());
     }
 
     public void StartDialogue(Dialogue dialogue){
@@ -45,9 +47,21 @@ public class DialogueManager : MonoBehaviour
         anim.SetBool("IsOpen", false);
     }
 
-    public IEnumerator DelayedDialogue(){
+    public IEnumerator StartFirstDialogue(){
+        StartDialogue(firstDialogue);
+        yield return new WaitForSeconds(waitTime);
+        EndDialogue();
         DisplayNextSentence();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(waitTime);
+        EndDialogue();
+        DisplayNextSentence();
+        yield return new WaitForSeconds(waitTime);
+        EndDialogue();
+        DisplayNextSentence();
+        yield return new WaitForSeconds(waitTime);
+        EndDialogue();
+        DisplayNextSentence();
+        yield return new WaitForSeconds(waitTime);
         EndDialogue();
     }
 }
