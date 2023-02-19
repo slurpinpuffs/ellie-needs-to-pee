@@ -4,19 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FirstDialogueManager : MonoBehaviour
+public class ControlledDialogueManager : MonoBehaviour
 {
-    [SerializeField] Dialogue firstDialogue;
+    [SerializeField] Dialogue controlledDialogue;
     [SerializeField] Animator anim;
-    [SerializeField] int waitTime = 3;
     private Queue<string> sentences;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text dialogueText;
+    [SerializeField] PlayerMovement playerController;
+    [SerializeField] UITimer timer;
 
     public virtual void Start()
     {
         sentences = new Queue<string>();
-        StartCoroutine(StartFirstDialogue());
+        playerController.enabled = false;
+        playerController.rb.velocity = new Vector2(0, 0);
+        timer.isActive = false;
+        StartDialogue(controlledDialogue);
+    }
+
+    public void Update(){
+        if(Input.GetKeyDown(KeyCode.E)){
+            DisplayNextSentence();
+        }
     }
 
     public void StartDialogue(Dialogue dialogue){
@@ -45,23 +55,8 @@ public class FirstDialogueManager : MonoBehaviour
 
     public void EndDialogue(){
         anim.SetBool("IsOpen", false);
-    }
-
-    public IEnumerator StartFirstDialogue(){
-        StartDialogue(firstDialogue);
-        yield return new WaitForSeconds(waitTime);
-        EndDialogue();
-        DisplayNextSentence();
-        yield return new WaitForSeconds(waitTime);
-        EndDialogue();
-        DisplayNextSentence();
-        yield return new WaitForSeconds(waitTime);
-        EndDialogue();
-        DisplayNextSentence();
-        yield return new WaitForSeconds(waitTime);
-        EndDialogue();
-        DisplayNextSentence();
-        yield return new WaitForSeconds(waitTime);
-        EndDialogue();
+        playerController.enabled = true;
+        timer.isActive = true;
+        enabled = false;
     }
 }

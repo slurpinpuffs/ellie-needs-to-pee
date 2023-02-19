@@ -25,16 +25,6 @@ public class DialogueTrigger : MonoBehaviour
         yield return new WaitUntil(() => timer.timeElapsed > 3.5f);
         StartCoroutine(TriggerDialogue());
         StartCoroutine(NextDialogue());
-        StartCoroutine(NextHalfDialogue());
-        StartCoroutine(NextDialogue());
-        StartCoroutine(NextHalfDialogue());
-        StartCoroutine(NextHalfDialogue());
-        StartCoroutine(NextHalfDialogue());
-        StartCoroutine(NextDialogue());
-        StartCoroutine(NextDialogue());
-        StartCoroutine(NextHalfDialogue());
-        StartCoroutine(NextDialogue());
-        StartCoroutine(NextDialogue());
     }
 
     public IEnumerator TriggerDialogue(){

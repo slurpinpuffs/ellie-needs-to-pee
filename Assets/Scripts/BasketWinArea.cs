@@ -9,6 +9,8 @@ public class BasketWinArea : InteractBox
     [SerializeField] protected GameObject shelf;
     [SerializeField] protected PlayerMovement playerController;
     [SerializeField] protected ShelfObjectiveObject shelfObjective;
+    [SerializeField] protected ObjectiveTextController objectiveText;
+    [SerializeField] protected string nextListItem;
 
     protected override void OnCollision(GameObject collidedObject){
         if(collidedObject.tag == "Item" && gotItem == false){
@@ -20,6 +22,7 @@ public class BasketWinArea : InteractBox
     protected virtual IEnumerator getItem(){
         yield return new WaitForSeconds(1);
         playerController.enabled = true;
+        objectiveText.setObjectiveText(nextListItem);
         StartCoroutine(shelfObjective.EndingDialogue());
         sm.Deactivate(shelf);
     }

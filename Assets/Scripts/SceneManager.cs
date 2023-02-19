@@ -11,5 +11,4 @@ public class SceneManager : MonoBehaviour
     public void Deactivate(GameObject shelf){
         shelf.SetActive(false);
     }
-
 }

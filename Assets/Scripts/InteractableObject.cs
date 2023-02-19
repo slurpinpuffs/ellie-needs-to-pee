@@ -7,8 +7,10 @@ public class InteractableObject : InteractBox
     protected bool z_Interacted = false;
     
     protected override void OnCollision(GameObject collidedObject){
-        if(Input.GetKey(KeyCode.E)){
-            OnInteract();
+        if(collidedObject.tag == "Player"){
+            if(Input.GetKey(KeyCode.E)){
+                OnInteract();
+            }
         }
     }
 

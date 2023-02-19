@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractBox : MonoBehaviour
 {
-    private Collider2D z_Collider;
+    protected Collider2D z_Collider;
     [SerializeField] private ContactFilter2D z_Filter;
     private List<Collider2D> z_CollidedObjects = new List<Collider2D>(1);
 

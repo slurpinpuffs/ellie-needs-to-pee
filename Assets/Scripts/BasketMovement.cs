@@ -8,11 +8,6 @@ public class BasketMovement : MonoBehaviour
     public Transform[] patrolPoints;
     int currentPointIndex;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if(transform.position != patrolPoints[currentPointIndex].position){

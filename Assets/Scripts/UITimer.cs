@@ -10,6 +10,7 @@ public class UITimer : MonoBehaviour
     [SerializeField] public float maxTime = 5f;
     public float timeElapsed;
     [SerializeField] TMP_Text peeText;
+    public bool isActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +21,14 @@ public class UITimer : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(timeElapsed < maxTime){
-            timeElapsed += Time.deltaTime;
-            peeBar.fillAmount = timeElapsed/maxTime;
-        }else{
-            Time.timeScale = 0;
+    {   if(isActive == true){
+            if(timeElapsed < maxTime){
+                timeElapsed += Time.deltaTime;
+                peeBar.fillAmount = timeElapsed/maxTime;
+            }else{
+                Time.timeScale = 0;
+            }
+            peeText.text = (maxTime - timeElapsed).ToString("f1");
         }
-        peeText.text = (maxTime - timeElapsed).ToString("f1");
     }
 }
