@@ -11,6 +11,7 @@ public class BasketWinArea : InteractBox
     [SerializeField] protected ShelfObjectiveObject shelfObjective;
     [SerializeField] protected ObjectiveTextController objectiveText;
     [SerializeField] protected string nextListItem;
+    [SerializeField] protected int endDialogueCount = 1;
 
     protected override void OnCollision(GameObject collidedObject){
         if(collidedObject.tag == "Item" && gotItem == false){
@@ -23,7 +24,7 @@ public class BasketWinArea : InteractBox
         yield return new WaitForSeconds(1);
         playerController.enabled = true;
         objectiveText.setObjectiveText(nextListItem);
-        StartCoroutine(shelfObjective.EndingDialogue());
+        StartCoroutine(shelfObjective.EndingDialogue(endDialogueCount));
         sm.Deactivate(shelf);
     }
 }

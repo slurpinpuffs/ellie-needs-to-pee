@@ -45,9 +45,11 @@ public class DialogueManager : MonoBehaviour
         anim.SetBool("IsOpen", false);
     }
 
-    public IEnumerator DelayedDialogue(){
-        DisplayNextSentence();
-        yield return new WaitForSeconds(3);
+    public IEnumerator DelayedDialogue(int count){
+        for(int i = 0; i < count; i++){
+            DisplayNextSentence();
+            yield return new WaitForSeconds(3);
+        }
         EndDialogue();
     }
 }

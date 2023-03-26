@@ -31,24 +31,23 @@ public class ShelfObjectiveObject : InteractableObject
             yield return new WaitUntil(() => animator.GetBool("IsOpen") == false);
         }
 
-        if(count == 2){
-            dm.StartDialogue(dialogue);
-            yield return new WaitForSeconds(3);
+
+        dm.StartDialogue(dialogue);
+        yield return new WaitForSeconds(3);
+
+        for(int i = 1; i < count; i++){
             dm.DisplayNextSentence();
-            yield return new WaitForSeconds(3);
-        }else{
-            dm.StartDialogue(dialogue);
             yield return new WaitForSeconds(3);
         }
         
         dm.EndDialogue();
     }
 
-    public IEnumerator EndingDialogue(){
+    public IEnumerator EndingDialogue(int count){
         if(animator.GetBool("IsOpen") == true){
             yield return new WaitUntil(() => animator.GetBool("IsOpen") == false);
         }
-        StartCoroutine(dm.DelayedDialogue());
+        StartCoroutine(dm.DelayedDialogue(count));
         sm.Activate(nextShelfObjective);
         transform.position = new Vector3(-1300f, -500f, 8.6f);
     }

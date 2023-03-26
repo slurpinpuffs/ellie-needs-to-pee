@@ -11,7 +11,7 @@ public class FirstBasketWinArea : BasketWinArea
         yield return new WaitForSeconds(1);
         playerController.enabled = true;
         objectiveText.setObjectiveText(nextListItem);
-        StartCoroutine(shelfObjective.EndingDialogue());
+        StartCoroutine(shelfObjective.EndingDialogue(1));
         sm.Activate(timer);
         sm.Activate(bathroom);
         sm.Deactivate(shelf);
