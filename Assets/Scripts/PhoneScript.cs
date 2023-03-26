@@ -8,11 +8,12 @@ public class PhoneScript : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject instructionBox;
     [SerializeField] GameObject eventManager;
+    [SerializeField] GameObject phone;
     [SerializeField] PlayerMovement playerController;
 
     void Update()
     {
-        if (Input.GetKeyDown("space")){
+        if (Input.anyKey){
             anim.SetTrigger("Start");
             StartCoroutine(Reactivate());
         }
@@ -22,6 +23,8 @@ public class PhoneScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         sm.Activate(instructionBox);
         sm.Activate(eventManager);
+        yield return new WaitForSeconds(1);
+        sm.Deactivate(phone);
     }
 
     void Start(){

@@ -6716,7 +6716,7 @@ GameObject:
   - component: {fileID: 909931620}
   - component: {fileID: 909931619}
   m_Layer: 0
-  m_Name: MintesoraMessengerEllie
+  m_Name: Phone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6825,6 +6825,7 @@ MonoBehaviour:
   anim: {fileID: 909931619}
   instructionBox: {fileID: 1149061891}
   eventManager: {fileID: 1851709807}
+  phone: {fileID: 909931616}
   playerController: {fileID: 907536294}
 --- !u!1 &910195237
 GameObject:
