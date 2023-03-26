@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InstructionBox : InteractableObject
 {
-    GameObject self;
+    protected GameObject self;
 
     protected override void Start(){
         z_Collider = GetComponent<Collider2D>();
