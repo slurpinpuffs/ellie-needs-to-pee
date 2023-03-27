@@ -12,7 +12,6 @@ public class ShelfObjectiveObject : InteractableObject
     [SerializeField] DialogueManager dm;
     //Dialogue box animator
     [SerializeField] Animator animator;
-    [SerializeField] GameObject nextShelfObjective;
     [SerializeField] int startDialogueCount = 1;
     [SerializeField] Dialogue dialogue;
 
@@ -48,7 +47,6 @@ public class ShelfObjectiveObject : InteractableObject
             yield return new WaitUntil(() => animator.GetBool("IsOpen") == false);
         }
         StartCoroutine(dm.DelayedDialogue(count));
-        sm.Activate(nextShelfObjective);
         transform.position = new Vector3(-1300f, -500f, 8.6f);
     }
 

@@ -10,6 +10,7 @@ public class BathroomObjectiveObject : InteractableObject
     [SerializeField] GameObject nextShelfObjective;
     [SerializeField] protected ObjectiveTextController objectiveText;
     [SerializeField] protected string nextListItem;
+    [SerializeField] GameObject arrow;
 
     protected override void Start(){
         z_Collider = GetComponent<Collider2D>();
@@ -25,6 +26,7 @@ public class BathroomObjectiveObject : InteractableObject
             dm.enabled = true;
             z_Collider.enabled = false;
             sm.Activate(nextShelfObjective);
+            sm.Deactivate(arrow);
         }
     }
 }
