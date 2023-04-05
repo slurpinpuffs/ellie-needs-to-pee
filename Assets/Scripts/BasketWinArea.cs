@@ -12,7 +12,15 @@ public class BasketWinArea : InteractBox
     [SerializeField] protected ObjectiveTextController objectiveText;
     [SerializeField] protected string nextListItem;
     [SerializeField] protected int endDialogueCount = 1;
-    [SerializeField] GameObject nextShelfObjective;
+    [SerializeField] protected GameObject nextShelfObjective;
+    protected GameObject pointerObj;
+    protected WindowQuestPointer pointerScript;
+    
+    protected void Start(){
+        z_Collider = GetComponent<Collider2D>();
+        pointerObj = GameObject.Find("Pointer");
+        pointerScript = pointerObj.GetComponent<WindowQuestPointer>();
+    }
 
     protected override void OnCollision(GameObject collidedObject){
         if(collidedObject.tag == "Item" && gotItem == false){
@@ -26,6 +34,7 @@ public class BasketWinArea : InteractBox
         playerController.enabled = true;
         objectiveText.setObjectiveText(nextListItem);
         StartCoroutine(shelfObjective.EndingDialogue(endDialogueCount));
+        pointerScript.setObjective(nextShelfObjective);
         sm.Activate(nextShelfObjective);
         sm.Deactivate(shelf);
     }
