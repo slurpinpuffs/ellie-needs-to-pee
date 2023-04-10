@@ -16,7 +16,7 @@ public class BasketWinArea : InteractBox
     protected GameObject pointerObj;
     protected WindowQuestPointer pointerScript;
     
-    protected void Start(){
+    protected override void Start(){
         z_Collider = GetComponent<Collider2D>();
         pointerObj = GameObject.Find("Pointer");
         pointerScript = pointerObj.GetComponent<WindowQuestPointer>();

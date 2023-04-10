@@ -5,7 +5,7 @@ using UnityEngine;
 public class BathroomObjectiveObject : InteractableObject
 {
     [SerializeField] SceneManager sm;
-    [SerializeField] ControlledDialogueManager dm;
+    [SerializeField] ControlledDialogueManager cdm;
     [SerializeField] private PlayerMovement playerController;
     [SerializeField] GameObject nextShelfObjective;
     [SerializeField] protected ObjectiveTextController objectiveText;
@@ -18,7 +18,7 @@ public class BathroomObjectiveObject : InteractableObject
         z_Collider = GetComponent<Collider2D>();
         pointerObj = GameObject.Find("Pointer");
         pointerScript = pointerObj.GetComponent<WindowQuestPointer>();
-        dm = GetComponent<ControlledDialogueManager>();
+        cdm = GetComponent<ControlledDialogueManager>();
     }
 
     protected override void OnInteract(){
@@ -27,7 +27,7 @@ public class BathroomObjectiveObject : InteractableObject
             playerController.enabled = false;
             objectiveText.setObjectiveText(nextListItem);
             playerController.rb.velocity = new Vector2(0, 0);
-            dm.enabled = true;
+            cdm.enabled = true;
             z_Collider.enabled = false;
             pointerScript.setObjective(nextShelfObjective);
             sm.Activate(nextShelfObjective);
