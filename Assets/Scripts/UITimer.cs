@@ -6,10 +6,12 @@ using TMPro;
 
 public class UITimer : MonoBehaviour
 {
+    [SerializeField] SceneManager sm;
     Image peeBar;
     [SerializeField] public float maxTime = 5f;
     public float timeElapsed;
     [SerializeField] TMP_Text peeText;
+    [SerializeField] GameObject failScreen;
     public bool isActive = true;
 
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class UITimer : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 peeBar.fillAmount = timeElapsed/maxTime;
             }else{
+                sm.Activate(failScreen);
                 Time.timeScale = 0;
             }
             peeText.text = (maxTime - timeElapsed).ToString("f1");
